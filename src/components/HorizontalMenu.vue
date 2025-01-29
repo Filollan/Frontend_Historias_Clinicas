@@ -5,11 +5,9 @@
         <router-link to="/inicio">Inicio</router-link>
       </li>
       <li>
-        <router-link to="/TableConsultation">Medico</router-link>
+        <router-link to="/TableConsultation">Historias clinicas</router-link>
       </li>
-      <li>
-        <router-link to="/TableConsultation2">Paciente</router-link>
-      </li>
+    
     </ul>
   </div>
 </template>

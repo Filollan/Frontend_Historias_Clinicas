@@ -1,7 +1,7 @@
 <template>
     <div class="welcome-container">
       <h1>Bienvenido a la Aplicación de Historias Clínicas</h1>
-      <p>Aqui podras a gestionar tus historias clínicas de manera eficiente y segura.</p>
+      <p>Aqui podras gestionar tus historias clínicas de manera eficiente y segura.</p>
     </div>
   </template>
   

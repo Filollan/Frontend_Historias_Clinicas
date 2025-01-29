@@ -93,7 +93,17 @@ export function getConsultations() {
     console.error("Error al obtener las consultas:", error);
   });
 }
-
+export function getConsultation() {
+  return request({
+    url: "consultations",
+    method: "get",
+  }).then(response => {
+    console.log(response); // Asegúrate de que la respuesta contiene los datos correctos
+    return response;
+  }).catch(error => {
+    console.error("Error al obtener las consultas:", error);
+  });
+}
 
 
 const loadConsultations = async () => {

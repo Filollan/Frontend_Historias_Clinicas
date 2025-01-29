@@ -20,7 +20,7 @@
         <div class="header-content">
           <span class="p-input-icon-left">
             <i class="pi pi-search" />
-            <InputText v-model="globalFilterValue" @input="searchConsultation" placeholder="Buscar Consultas" />
+            <InputText v-model="globalFilterValue" @input="searchConsultation" placeholder="Buscar" />
           </span>
         </div>
       </template>
@@ -46,7 +46,7 @@
 
   <!-- Modal para ver consulta -->
   <Dialog v-model:visible="mostrarModalVerConsulta" header="Ver Consulta" :style="{width: '50vw'}" :modal="true">
-    <div class="container-dialog">
+    <div v-if="consultaSeleccionada?.hash === '32a58e7f323471bf07b06137177b358c004739412e0d056f8d7f89eb1ea4645f'" class="container-dialog">
       <div>
         <label>Paciente:</label>
         <div>{{ consultaSeleccionada?.data.patient || 'No disponible' }}</div>
@@ -176,13 +176,17 @@ const filteredConsultations = ref([]);
 const consultaSeleccionada = ref({});
 
 // Cargar las consultas
+// Cargar las consultas
 async function loadConsultations() {
   isActive.value = true;
   try {
     const response = await api.getConsultations();
     consultas.value = response;
-    filteredConsultations.value = response.slice(1);
-    console.log('Consultas cargadas:', consultas.value); 
+    
+    // Filtra la consulta por el hash específico
+    filteredConsultations.value = consultas.value.filter(consulta => consulta.hash === '20bf8f17de46ba31b130758793d8b871c46e629d3a658879230feeb401cd6689');
+    
+    console.log('Consultas filtradas por hash:', filteredConsultations.value); 
 
   } catch (error) {
     console.error('Error al cargar consultas:', error);
@@ -190,6 +194,7 @@ async function loadConsultations() {
     isActive.value = false;
   }
 }
+
 
 const guardarCambiosConsulta = async () => {
   isActive.value = true;

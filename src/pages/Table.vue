@@ -440,19 +440,21 @@ const generatePDF = () => {
 
 
 const shareWhatsApp = () => {
+  // Construye el mensaje con los datos específicos de la historia clínica
+  const message = `
+    Paciente: ${pacienteSeleccionado.value.name} ${pacienteSeleccionado.value.last_name}
+    Fecha: ${new Date(historiaClinicaSeleccionada.value.date).toISOString()}
+    Médico: ${historiaClinicaSeleccionada.value.gynecologist}
+    Razón de Consulta: ${historiaClinicaSeleccionada.value.reason_for_consultation}
+    Diagnóstico: ${historiaClinicaSeleccionada.value.diagnosis}
+  `.trim();
 
-  const pdfLink = 'https://localhost/historia_clinica_paciente.pdf';
-
-
-  const message = `¡Hola! Aquí está tu Historia Clínica: ${pdfLink}`;
-
-
+  // Crea el enlace para enviar el mensaje por WhatsApp
   const whatsappLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
-
-
+  
+  // Abre el enlace en una nueva ventana
   window.open(whatsappLink, '_blank');
 };
-
 
 
 
